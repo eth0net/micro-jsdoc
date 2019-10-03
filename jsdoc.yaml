@@ -1,0 +1,68 @@
+filetype: javascript
+detect:
+    filename: "\\.m?js$"
+rules:
+    - include: "javascript"
+    - comment:
+        start: "/\\*\\*"
+        end: "\\*/"
+        rules:
+            # special case for @borrows
+            - identifier: " @borrows (.+? as )?.+?( |$)"
+            - special: " as"
+
+            # special case for @see
+            - identifier: " @see [^ ]+?$"
+
+            # special cases for @link and @tutorial
+            - statement: "\\[.*?\\]{@(link|tutorial) [^ ]+?}"
+            - special: "{@(link|tutorial).*?}"
+            - default: "@(link|tutorial) [^}]+"
+            - identifier: "{@(link|tutorial) [^ ]+?}"
+            - special: "@(link|tutorial)"
+
+            # name/value after block tag
+            - identifier: " @(access|alias|augments|callback) \\w+?( |$)"
+            - identifier: " @(constructs|default(value)?|emits) \\w+?( |$)"
+            - identifier: " @(event|exports|extends|external|fires) \\w+?( |$)"
+            - identifier: " @(func(tion)?|host|interface|lends) \\w+?( |$)"
+            - identifier: " @(license|listens|memberof|method) \\w+?( |$)"
+            - identifier: " @(mixes|mixin|name|requires|since|this) \\w+?( |$)"
+            - identifier: " @(tutorial|variation|version) \\w+?( |$)"
+
+            # name/value after block tag with type
+            - identifier: " @(class|const(ant)?) (\\{.+?\\} )?.+?( |$)"
+            - identifier: " @(constructor|member|module) (\\{.+?\\} )?.+?( |$)"
+            - identifier: " @(namespace|typedef|var) (\\{.+?\\} )?.+?( |$)"
+
+            # [name/value] after block tag with type
+            - identifier: " @(arg(ument)?|param) (\\{.+?\\} )?\\[?.+?\\]?( |$)"
+            - identifier: " @(prop(erty)?) (\\{.+?\\} )?\\[?.+?\\]?( |$)"
+
+            # type after block tag
+            - type: " @(arg(ument)?|class|const(ant)?|constructor) \\{.+?\\}"
+            - type: " @(enum|exception|implements|kind|member) \\{.+?\\}"
+            - type: " @(module|namespace|package|param|private) \\{.+?\\}"
+            - type: " @(prop(erty)?|protected|returns?|throws) \\{.+?\\}"
+            - type: " @(type(def)?|var|yields) \\{.+?\\}"
+
+            # block tags
+            - special: " @(abstract|access|alias|arg|argument|async)( |$)"
+            - special: " @(augments|author|borrows|callback|class)( |$)"
+            - special: " @(classdesc|const|constant|constructor)( |$)"
+            - special: " @(constructs|copyright|default|defaultvalue)( |$)"
+            - special: " @(deprecated|desc|description|emits|enum|event)( |$)"
+            - special: " @(example|exception|exports|extends|external)( |$)"
+            - special: " @(file|fileoverview|fires|func|function)( |$)"
+            - special: " @(generator|global|hideconstructor|host|ignore)( |$)"
+            - special: " @(implements|inheritdoc|inner|instance)( |$)"
+            - special: " @(interface|kind|lends|license|listens|member)( |$)"
+            - special: " @(memberof|method|mixes|mixin|module|name)( |$)"
+            - special: " @(namespace|override|overview|package|param)( |$)"
+            - special: " @(private|prop|property|protected|public)( |$)"
+            - special: " @(readonly|requires|returns?|see|since|static)( |$)"
+            - special: " @(summary|this|throws|todo|tutorial|type)( |$)"
+            - special: " @(typedef|var|variation|version|virtual|yields?)( |$)"
+
+            # namepaths
+            - identifier: " (event|external|module):.*?( |$)"

@@ -1,0 +1,14 @@
+[{
+  "Name": "jsdoc",
+  "Description": "Adds JSDoc syntax support to micro",
+  "Tags": ["js", "javascript", "docs", "jsdoc", "syntax"]
+  "Versions": [
+    {
+      "Version": "1.0.0",
+      "Url": "https://github.com/raziel2244/mu-jsdoc/archive/v1.0.0.zip",
+      "Require": {
+        "micro": ">=1.2.0"
+      }
+    }
+  ]
+}]

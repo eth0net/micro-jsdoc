@@ -1,8 +1,12 @@
 filetype: javascript
+
 detect:
-    filename: "\\.m?js$"
+    filename: "(\\.m?js|\\.es[5678]?)$"
+    header: "^#!.*/(env +)?node( |$)"
+
 rules:
     - include: "javascript"
+
     - comment:
         start: "/\\*\\*"
         end: "\\*/"
